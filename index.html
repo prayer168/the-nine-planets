@@ -206,6 +206,94 @@ const PLANETS = [
 ];
 
 // ═══════════════════════════════════════════════════
+// MOON DATABASE  (orb = visual orbit radius in scene units)
+// ═══════════════════════════════════════════════════
+const MOONS = [
+  // ── 地球 ──────────────────────────────────────────
+  { cn:'月球', name:'Moon', planet:'earth', tex:'moon',
+    r:0.15, orb:3.0, period:27.322, rot:27.322, tilt:6.68,
+    desc:'地球唯一的天然衛星，形成潮汐、穩定地軸',
+    facts:{'軌道半徑':'384,400 km','公轉週期':'27.32 天','自轉週期':'27.32 天（同步）','半徑':'1,737 km'} },
+  // ── 火星 ──────────────────────────────────────────
+  { cn:'火衛一', name:'Phobos', planet:'mars', tex:'small_moon',
+    r:0.055, orb:0.78, period:0.319, rot:0.319, tilt:0,
+    desc:'火星最大衛星，每天繞行火星三圈，正逐漸靠近火星',
+    facts:{'軌道半徑':'9,376 km','公轉週期':'7.66 小時','半徑':'11.3 km'} },
+  { cn:'火衛二', name:'Deimos', planet:'mars', tex:'small_moon',
+    r:0.045, orb:1.25, period:1.263, rot:1.263, tilt:1.79,
+    desc:'火星外側較小衛星，表面光滑，由塵埃覆蓋',
+    facts:{'軌道半徑':'23,463 km','公轉週期':'1.26 天','半徑':'6.2 km'} },
+  // ── 木星伽利略衛星 ────────────────────────────────
+  { cn:'木衛一', name:'Io', planet:'jupiter', tex:'io',
+    r:0.22, orb:3.5, period:1.769, rot:1.769, tilt:0.05,
+    desc:'太陽系火山活動最劇烈的天體，數百座活火山持續噴發',
+    facts:{'軌道半徑':'421,700 km','公轉週期':'1.77 天','半徑':'1,821 km','特色':'火山最活躍天體'} },
+  { cn:'木衛二', name:'Europa', planet:'jupiter', tex:'europa',
+    r:0.19, orb:4.8, period:3.552, rot:3.552, tilt:0.47,
+    desc:'冰殼下可能有全球性液態海洋，是尋找地外生命的首要目標',
+    facts:{'軌道半徑':'671,100 km','公轉週期':'3.55 天','半徑':'1,561 km','特色':'冰下海洋，潛在宜居'} },
+  { cn:'木衛三', name:'Ganymede', planet:'jupiter', tex:'ganymede',
+    r:0.28, orb:6.5, period:7.155, rot:7.155, tilt:0.18,
+    desc:'太陽系最大衛星，比水星還大，擁有自己的磁場',
+    facts:{'軌道半徑':'1,070,400 km','公轉週期':'7.15 天','半徑':'2,634 km','特色':'有自身磁場'} },
+  { cn:'木衛四', name:'Callisto', planet:'jupiter', tex:'callisto',
+    r:0.26, orb:8.5, period:16.69, rot:16.69, tilt:0.19,
+    desc:'太陽系撞擊坑最密集的天體，表面極為古老',
+    facts:{'軌道半徑':'1,882,700 km','公轉週期':'16.69 天','半徑':'2,410 km'} },
+  // ── 土星主要衛星 ──────────────────────────────────
+  { cn:'土衛一', name:'Mimas', planet:'saturn', tex:'small_moon',
+    r:0.08, orb:4.6, period:0.942, rot:0.942, tilt:1.57,
+    desc:'巨大的赫歇爾隕石坑使其外觀酷似死星',
+    facts:{'軌道半徑':'185,520 km','公轉週期':'22.6 小時','半徑':'198 km'} },
+  { cn:'土衛二', name:'Enceladus', planet:'saturn', tex:'enceladus',
+    r:0.09, orb:5.4, period:1.370, rot:1.370, tilt:0.02,
+    desc:'南極噴射冰水羽流，地下可能有液態海洋，含有機物',
+    facts:{'軌道半徑':'238,020 km','公轉週期':'1.37 天','半徑':'252 km','特色':'冰水噴泉'} },
+  { cn:'土衛三', name:'Tethys', planet:'saturn', tex:'small_moon',
+    r:0.13, orb:6.2, period:1.888, rot:1.888, tilt:1.12,
+    desc:'幾乎全由水冰組成，表面有巨大的奧德修斯隕石坑',
+    facts:{'軌道半徑':'294,660 km','公轉週期':'1.89 天','半徑':'533 km'} },
+  { cn:'土衛四', name:'Dione', planet:'saturn', tex:'small_moon',
+    r:0.13, orb:7.2, period:2.737, rot:2.737, tilt:0.02,
+    desc:'表面有明亮的冰崖地形，被認為地下可能有液態水',
+    facts:{'軌道半徑':'377,400 km','公轉週期':'2.74 天','半徑':'562 km'} },
+  { cn:'土衛五', name:'Rhea', planet:'saturn', tex:'small_moon',
+    r:0.16, orb:8.5, period:4.518, rot:4.518, tilt:0.35,
+    desc:'土星第二大衛星，表面佈滿古老撞擊坑',
+    facts:{'軌道半徑':'527,040 km','公轉週期':'4.52 天','半徑':'764 km'} },
+  { cn:'土衛六', name:'Titan', planet:'saturn', tex:'titan',
+    r:0.28, orb:11.5, period:15.945, rot:15.945, tilt:0.33,
+    desc:'太陽系第二大衛星，擁有濃密含氮大氣和甲烷液態湖泊，最像早期地球的天體',
+    facts:{'軌道半徑':'1,221,870 km','公轉週期':'15.95 天','半徑':'2,575 km','特色':'濃密大氣，甲烷湖'} },
+  // ── 天王星主要衛星 ────────────────────────────────
+  { cn:'天衛五', name:'Miranda', planet:'uranus', tex:'small_moon',
+    r:0.10, orb:2.9, period:1.413, rot:1.413, tilt:4.22,
+    desc:'地形最複雜的衛星，有太陽系最高的峭壁（約20km）',
+    facts:{'軌道半徑':'129,390 km','公轉週期':'1.41 天','半徑':'236 km'} },
+  { cn:'天衛一', name:'Ariel', planet:'uranus', tex:'small_moon',
+    r:0.14, orb:4.0, period:2.520, rot:2.520, tilt:0.26,
+    desc:'表面相對年輕，有寬闊溝槽，可能有地質活動',
+    facts:{'軌道半徑':'191,020 km','公轉週期':'2.52 天','半徑':'579 km'} },
+  { cn:'天衛二', name:'Umbriel', planet:'uranus', tex:'small_moon',
+    r:0.14, orb:5.2, period:4.144, rot:4.144, tilt:0.13,
+    desc:'天王星衛星中最暗的一顆，表面古老佈滿撞擊坑',
+    facts:{'軌道半徑':'266,300 km','公轉週期':'4.14 天','半徑':'585 km'} },
+  { cn:'天衛三', name:'Titania', planet:'uranus', tex:'small_moon',
+    r:0.17, orb:7.0, period:8.706, rot:8.706, tilt:0.08,
+    desc:'天王星最大衛星，表面有峽谷和隕石坑',
+    facts:{'軌道半徑':'435,910 km','公轉週期':'8.71 天','半徑':'789 km'} },
+  { cn:'天衛四', name:'Oberon', planet:'uranus', tex:'small_moon',
+    r:0.16, orb:8.5, period:13.463, rot:13.463, tilt:0.07,
+    desc:'天王星第二大衛星，表面山峰高達6km',
+    facts:{'軌道半徑':'583,520 km','公轉週期':'13.46 天','半徑':'761 km'} },
+  // ── 海王星 ────────────────────────────────────────
+  { cn:'海衛一', name:'Triton', planet:'neptune', tex:'triton',
+    r:0.20, orb:4.5, period:-5.877, rot:5.877, tilt:156.8,
+    desc:'逆行公轉的衛星，可能是柯伊伯帶被捕獲的天體，有氮冰噴泉',
+    facts:{'軌道半徑':'354,759 km','公轉週期':'5.88 天（逆行）','半徑':'1,353 km','特色':'逆行軌道，氮冰間歇泉'} },
+];
+
+// ═══════════════════════════════════════════════════
 // PROCEDURAL TEXTURES
 // ═══════════════════════════════════════════════════
 function fbm(x, y, oct=5, seed=0) {
@@ -445,6 +533,142 @@ const TEX = {
     ctx.fillStyle=g; ctx.fillRect(0,0,w,1);
   }, 512, 1),
 
+  // ── Moon textures ──────────────────────────────────
+  moon: mkTex((ctx,w,h)=>{
+    const id=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n=fbm(x/w*6,y/h*6,5,1001), i=(y*w+x)*4, v=Math.floor(105+n*105);
+      id.data[i]=v; id.data[i+1]=v-4; id.data[i+2]=v-8; id.data[i+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+    for(let i=0;i<55;i++){
+      const cx=Math.random()*w, cy=Math.random()*h, cr=3+Math.random()*20;
+      const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
+      cg.addColorStop(0,'rgba(38,33,28,.9)'); cg.addColorStop(.65,'rgba(62,57,50,.5)');
+      cg.addColorStop(.86,'rgba(198,192,180,.58)'); cg.addColorStop(1,'rgba(145,140,130,0)');
+      ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,cr*1.1,0,Math.PI*2); ctx.fill();
+    }
+  },256,256),
+
+  io: mkTex((ctx,w,h)=>{
+    const id=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n1=fbm(x/w*5,y/h*5,5,1101), n2=fbm(x/w*8,y/h*8,4,1201), i=(y*w+x)*4;
+      if(n2>.65){ id.data[i]=Math.floor(60+n2*80); id.data[i+1]=Math.floor(20+n2*30); id.data[i+2]=0; }
+      else if(n1>.55){ id.data[i]=240; id.data[i+1]=Math.floor(175+n1*60); id.data[i+2]=0; }
+      else{ id.data[i]=Math.floor(198+n1*50); id.data[i+1]=Math.floor(158+n1*70); id.data[i+2]=Math.floor(n1*55); }
+      id.data[i+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+  },256,256),
+
+  europa: mkTex((ctx,w,h)=>{
+    ctx.fillStyle='#dbe8f8'; ctx.fillRect(0,0,w,h);
+    const id=ctx.getImageData(0,0,w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n=fbm(x/w*4,y/h*4,4,1301), i=(y*w+x)*4, d=Math.floor((n-.5)*28);
+      id.data[i]=Math.min(255,id.data[i]+d); id.data[i+1]=Math.min(255,id.data[i+1]+d+4);
+      id.data[i+2]=Math.min(255,id.data[i+2]+d);
+    }
+    ctx.putImageData(id,0,0);
+    ctx.strokeStyle='rgba(155,125,95,.65)'; ctx.lineWidth=1;
+    for(let i=0;i<18;i++){
+      let lx=Math.random()*w, ly=Math.random()*h; ctx.beginPath(); ctx.moveTo(lx,ly);
+      for(let j=0;j<5;j++){ lx+=(-28+Math.random()*56); ly+=(-28+Math.random()*56); ctx.lineTo(lx,ly); }
+      ctx.stroke();
+    }
+  },256,256),
+
+  ganymede: mkTex((ctx,w,h)=>{
+    const id=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n1=fbm(x/w*4,y/h*4,5,1401), n2=fbm(x/w*8,y/h*8,4,1501), i=(y*w+x)*4;
+      const v=n1<.44?Math.floor(48+n2*58):Math.floor(118+n2*88);
+      id.data[i]=v; id.data[i+1]=v-2; id.data[i+2]=v-4; id.data[i+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+    for(let i=0;i<30;i++){
+      const cx=Math.random()*w, cy=Math.random()*h, cr=3+Math.random()*16;
+      const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
+      cg.addColorStop(0,'rgba(28,26,22,.8)'); cg.addColorStop(.7,'rgba(52,50,45,.4)');
+      cg.addColorStop(.88,'rgba(188,183,172,.5)'); cg.addColorStop(1,'rgba(135,130,120,0)');
+      ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,cr*1.1,0,Math.PI*2); ctx.fill();
+    }
+  },256,256),
+
+  callisto: mkTex((ctx,w,h)=>{
+    const id=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n=fbm(x/w*6,y/h*6,5,1601), i=(y*w+x)*4, v=Math.floor(33+n*68);
+      id.data[i]=v; id.data[i+1]=v-1; id.data[i+2]=v-4; id.data[i+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+    for(let i=0;i<75;i++){
+      const cx=Math.random()*w, cy=Math.random()*h, cr=2+Math.random()*15;
+      const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
+      cg.addColorStop(0,'rgba(18,16,13,.9)'); cg.addColorStop(.7,'rgba(32,30,26,.5)');
+      cg.addColorStop(.88,'rgba(145,140,130,.5)'); cg.addColorStop(1,'rgba(75,73,65,0)');
+      ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,cr*1.1,0,Math.PI*2); ctx.fill();
+    }
+  },256,256),
+
+  titan: mkTex((ctx,w,h)=>{
+    const g=ctx.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);
+    g.addColorStop(0,'#ce7d2e'); g.addColorStop(.6,'#bf681e'); g.addColorStop(1,'#a05010');
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+    const id=ctx.getImageData(0,0,w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n=fbm(x/w*3,y/h*3,3,1701)-.5, i=(y*w+x)*4;
+      id.data[i]=Math.max(0,Math.min(255,id.data[i]+n*22));
+      id.data[i+1]=Math.max(0,Math.min(255,id.data[i+1]+n*14));
+    }
+    ctx.putImageData(id,0,0);
+  },256,256),
+
+  enceladus: mkTex((ctx,w,h)=>{
+    const id=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n=fbm(x/w*5,y/h*5,4,1801), i=(y*w+x)*4, v=Math.floor(192+n*62);
+      id.data[i]=v; id.data[i+1]=v; id.data[i+2]=Math.min(255,v+10); id.data[i+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+    ctx.strokeStyle='rgba(130,155,195,.65)'; ctx.lineWidth=1.5;
+    for(let i=0;i<5;i++){
+      const y=h*.64+i*7; ctx.beginPath();
+      ctx.moveTo(w*.18,y+(Math.random()*5-2)); ctx.lineTo(w*.82,y+(Math.random()*5-2)); ctx.stroke();
+    }
+  },256,256),
+
+  triton: mkTex((ctx,w,h)=>{
+    const id=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n=fbm(x/w*5,y/h*5,5,1901), i=(y*w+x)*4;
+      id.data[i]=Math.floor(145+n*80); id.data[i+1]=Math.floor(128+n*68);
+      id.data[i+2]=Math.floor(138+n*62); id.data[i+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+    const pg=ctx.createRadialGradient(w/2,h*.08,0,w/2,h*.08,h*.28);
+    pg.addColorStop(0,'rgba(228,222,212,.88)'); pg.addColorStop(.7,'rgba(200,194,182,.3)');
+    pg.addColorStop(1,'rgba(175,168,155,0)');
+    ctx.fillStyle=pg; ctx.fillRect(0,0,w,h*.22);
+  },256,256),
+
+  small_moon: mkTex((ctx,w,h)=>{
+    const id=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const n=fbm(x/w*5,y/h*5,4,2001), i=(y*w+x)*4, v=Math.floor(92+n*108);
+      id.data[i]=v-2; id.data[i+1]=v-2; id.data[i+2]=v+1; id.data[i+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+    for(let i=0;i<42;i++){
+      const cx=Math.random()*w, cy=Math.random()*h, cr=2+Math.random()*13;
+      const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,cr);
+      cg.addColorStop(0,'rgba(33,30,28,.88)'); cg.addColorStop(.7,'rgba(53,50,46,.45)');
+      cg.addColorStop(.87,'rgba(182,178,170,.5)'); cg.addColorStop(1,'rgba(125,122,118,0)');
+      ctx.fillStyle=cg; ctx.beginPath(); ctx.arc(cx,cy,cr*1.1,0,Math.PI*2); ctx.fill();
+    }
+  },256,256),
+
   glow: mkTex((ctx,w,h)=>{
     const g=ctx.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);
     g.addColorStop(0,'rgba(255,245,180,.85)'); g.addColorStop(.18,'rgba(255,210,80,.45)');
@@ -570,8 +794,20 @@ function makeOrbitLine(r){
 // ═══════════════════════════════════════════════════
 // BUILD PLANETS
 // ═══════════════════════════════════════════════════
-const planetObjs = [];
-const allMeshes  = [];
+const planetObjs    = [];
+const allMeshes     = [];
+const moonObjs      = [];
+const allMoonMeshes = [];
+
+function makeMoonOrbitLine(parent, r){
+  const pts=[], N=128;
+  for(let i=0;i<=N;i++){ const a=i/N*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*r,0,Math.sin(a)*r)); }
+  const l=new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(pts),
+    new THREE.LineBasicMaterial({ color:0x223355, transparent:true, opacity:.18 })
+  );
+  parent.add(l); orbitLines.push(l);
+}
 
 PLANETS.forEach(pd=>{
   const orbR = pd.a * AU;
@@ -639,6 +875,43 @@ PLANETS.forEach(pd=>{
   // Random initial orbital angle for realism
   orbitPivot.rotation.y = Math.random()*Math.PI*2;
 
+  // ── Moons for this planet ────────────────────────
+  MOONS.filter(md=>md.planet===pd.id).forEach(md=>{
+    makeMoonOrbitLine(tiltGroup, md.orb);
+
+    const mOrbitPivot = new THREE.Object3D();
+    tiltGroup.add(mOrbitPivot);
+    mOrbitPivot.rotation.y = Math.random()*Math.PI*2;
+
+    const mOrbitGroup = new THREE.Group();
+    mOrbitGroup.position.x = md.orb;
+    mOrbitPivot.add(mOrbitGroup);
+
+    const mMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(md.r, 32, 16),
+      new THREE.MeshPhongMaterial({ map: TEX[md.tex], shininess: 6,
+        specular: new THREE.Color(.02,.02,.02) })
+    );
+    mOrbitGroup.add(mMesh);
+    allMoonMeshes.push(mMesh);
+
+    const mDiv = document.createElement('div');
+    mDiv.className = 'label';
+    mDiv.style.fontSize = '9px';
+    mDiv.style.opacity  = '0.7';
+    mDiv.textContent = md.cn;
+    const mLbl = new CSS2DObject(mDiv);
+    mLbl.position.set(0, md.r*1.5+.15, 0);
+    mOrbitGroup.add(mLbl);
+
+    moonObjs.push({
+      md, mOrbitPivot, mOrbitGroup, mMesh, mLbl,
+      ω_orb: (Math.PI*2) / Math.abs(md.period),
+      orb_sign: md.period>0 ? 1 : -1,
+      ω_rot: (Math.PI*2) / md.rot,
+    });
+  });
+
   planetObjs.push({
     pd, orbitPivot, orbitGroup, tiltGroup, mesh, lbl,
     ω_orb: (Math.PI*2) / pd.period,
@@ -655,10 +928,13 @@ const ray=new THREE.Raycaster(), mouse=new THREE.Vector2();
 renderer.domElement.addEventListener('click', e=>{
   mouse.set((e.clientX/innerWidth)*2-1, -(e.clientY/innerHeight)*2+1);
   ray.setFromCamera(mouse, camera);
-  const hits=ray.intersectObjects(allMeshes);
+  const hits=ray.intersectObjects([...allMeshes,...allMoonMeshes]);
   if(hits.length){
-    const idx=allMeshes.indexOf(hits[0].object);
-    if(idx>=0) openInfo(PLANETS[idx]);
+    const obj=hits[0].object;
+    const pi=allMeshes.indexOf(obj);
+    if(pi>=0){ openInfo(PLANETS[pi]); return; }
+    const mi=allMoonMeshes.indexOf(obj);
+    if(mi>=0) openInfo(MOONS[mi]);
   }
 });
 
@@ -689,6 +965,7 @@ document.getElementById('btn-labels').onclick=function(){
   this.classList.toggle('active');
   const on=this.classList.contains('active');
   planetObjs.forEach(p=>p.lbl.element.style.display=on?'':'none');
+  moonObjs.forEach(m=>m.mLbl.element.style.display=on?'':'none');
 };
 
 document.getElementById('btn-orbits').onclick=function(){
@@ -746,6 +1023,10 @@ function animate(){
     planetObjs.forEach(p=>{
       p.orbitPivot.rotation.y += p.ω_orb * sd;
       p.mesh.rotation.y       += p.rot_sign * p.ω_rot * sd;
+    });
+    moonObjs.forEach(m=>{
+      m.mOrbitPivot.rotation.y += m.orb_sign * m.ω_orb * sd;
+      m.mMesh.rotation.y       += m.ω_rot * sd;
     });
     sunMesh.rotation.y += (Math.PI*2/25)*sd;
   }
